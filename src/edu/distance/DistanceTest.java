@@ -10,6 +10,7 @@ public class DistanceTest {
 	private final String LINE = System.getProperty("line.separator");
 	private HashMap<Integer, HashMap<Integer,Integer>> stepLength = new HashMap<Integer, HashMap<Integer,Integer>>();  
 	private StringBuilder str = new StringBuilder();
+	
 	public DistanceTest(){
 		HashMap<Integer,Integer> step1 = new HashMap<Integer, Integer>();  
         stepLength.put(1, step1);  

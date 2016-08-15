@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import edu.JTree.JTreeDemo;
+import edu.Jar.UnJar;
 
 
 
@@ -108,16 +109,18 @@ public CutPanel(String title) {  //构造函数重写
 			panel.setLayout(new BorderLayout());//由于清了所有，所以重新设置边界布局
 //			cp.remove(panel);//清除默认面板
 //			cp.repaint();//remove配套，重画框架
-			cp.panel.validate();  //验证功能
+			cp.panel.validate();  //验证功能, 使用 validate 方法会使容器再次布置其子组件。已经显示容器后，在修改此容器的子组件的时候（在容器中添加或移除组件，或者更改与 布局相关的信息），应该调用上述方法。如果此 Container 无效，则此方法将调用 validateTree 方法，并将此 Container 标记为有效。否则不执行任何动作。
 //			System.out.println(buttonName.toString());
 			if (buttonName.equals("欢迎首页")){
 				cp.panel.add(buildImage(),BorderLayout.CENTER);
 			}	
 			else if(buttonName.equals("JavaSrc")){
+				new UnJar();
 				cp.panel.add(new JTreeDemo(),BorderLayout.CENTER);
 			}
 			else if(buttonName.equals("数据排序")){
 				cp.panel.add(new DataSort(),BorderLayout.CENTER);
+				
 			}
 			else if(buttonName.equals("二叉树")){
 				cp.panel.add(new BTree(),BorderLayout.CENTER);

@@ -6,11 +6,15 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -27,6 +31,7 @@ public class DistanceDemo extends JPanel{
 	private JPanel head = new JPanel();
 	private JPanel center = new JPanel();
 	private JTextArea jt= new JTextArea();
+	private JTextField jtf = null; 
 	private JScrollPane jsp=new JScrollPane(jt);
 	private DistanceTest path = new DistanceTest();
 	private int upSelect=0;
@@ -35,11 +40,15 @@ public class DistanceDemo extends JPanel{
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("最短路径"));
 		this.setLayout(new BorderLayout(5,10));
-		this.add(center,BorderLayout.CENTER);
+		this.add(centerIniti(),BorderLayout.CENTER);
 		this.add(headIniti(),BorderLayout.NORTH);
+		
+	}
+	private JPanel centerIniti() {
 		center.setLayout(new GridLayout(1,2) );
-		center.add(rightIniti());
 		center.add(leftIniti());
+		center.add(rightIniti());
+		return center;
 	}	
 	/**
 	 * 创建一个数据输入和确定
@@ -47,15 +56,54 @@ public class DistanceDemo extends JPanel{
 	 * @return
 	 */
 	private JPanel headIniti() {
-		JTextField jtf = new JTextField(20);
+		jtf = new JTextField(20);
 		JButton jb = new JButton("确定");
 //		jtf.addMouseListener(l);
 		head.setLayout(new FlowLayout());
+		jb.addActionListener(l);
+		head.add(new JLabel("输入数据："));
 		head.add(jtf);
 		head.add(jb);
 		return head;
 	}
-	private JPanel rightIniti() {
+	private ActionListener l = new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+//			e.getSource();
+			String s[]=jtf.getText().split(" +");
+			int data[]=new int[s.length];
+			for(int i=0;i<s.length;i++){
+				try {
+					data[i] = Integer.parseInt(s[i]);	
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, e2.getMessage()+"数据有错误", "错误", JOptionPane.ERROR_MESSAGE);
+				    jtf.setText("");
+				    return ;
+				}
+			}
+//			System.out.println(data.toString());
+			addJButton(data);
+		}
+		
+	};
+	private void addJButton(int data[]){
+		HashMap<Integer,HashMap<Integer,Integer>> stepLength =path.getStepLength();
+		HashMap<Integer,Integer> step1 =null;  
+		if(stepLength.containsKey(data[0])){  //存在返回 键所对应的值
+			step1 = stepLength.get(data[0]);
+		}
+		else{
+			step1 = new HashMap<Integer,Integer>();//不存在就新建一个值
+			stepLength.put(data[0], step1);  
+		}
+        step1.put(data[1], data[2]);  
+		center.removeAll();
+		centerIniti();
+		this.updateUI();	
+	}
+	private JPanel leftIniti() {
 		JPanel left = new JPanel();
 		left.setLayout(new GridLayout(2,1));
 		left.add(up());
@@ -70,10 +118,11 @@ public class DistanceDemo extends JPanel{
 		Set<Integer> key =path.getStepLength().keySet();
 		jb= new JRadioButton[key.size()];
 		ButtonGroup bg = new ButtonGroup();
-		for (Integer i : key) {
-			jb[i-1]=new JRadioButton(i.toString());
-			bg.add(jb[i-1]);
-			jb[i-1].addActionListener(a2);
+		int i=0;
+		for (Iterator<Integer> it=key.iterator();it.hasNext();i++) {
+			jb[i]=new JRadioButton(it.next().toString());
+			bg.add(jb[i]);
+			jb[i].addActionListener(a2);
 		} 
 		for(JRadioButton j :jb){
 			down.add(j);
@@ -89,17 +138,18 @@ public class DistanceDemo extends JPanel{
 		Set<Integer> key =path.getStepLength().keySet();
 		jb= new JRadioButton[key.size()];
 		ButtonGroup bg = new ButtonGroup();
-		for (Integer i : key) {
-			jb[i-1]=new JRadioButton(i.toString());
-			bg.add(jb[i-1]);
-			jb[i-1].addActionListener(a1);
+		int i=0;
+		for (Iterator<Integer> it=key.iterator();it.hasNext();i++) {
+			jb[i]=new JRadioButton(it.next().toString());
+			bg.add(jb[i]);
+			jb[i].addActionListener(a1);
 		} 
 		for(JRadioButton j :jb){
 			up.add(j);
 		}
 		return up;
 	}
-	private JPanel leftIniti(){
+	private JPanel rightIniti(){
 		JPanel right = new JPanel();
 		right.setLayout(new BorderLayout(10,10));
 		right.setBorder(BorderFactory.createTitledBorder("文本区"));

@@ -26,7 +26,8 @@ public class JTreeDemo extends JPanel{
 	private static final long serialVersionUID = 1L;
 //	private JLabel test = new JLabel("正在开发");
 	private MyTextArea jt = new MyTextArea("请选择"); 
-	private final String filePath ="d:\\WorkSpace\\removeDemo\\src";
+//	private final String filePath ="D:\\WorkSpace\\BlueDot_2016summer\\src";
+	private final String filePath =System.getProperty("user.dir")+File.separator+"src";
 	private JPanel left =new JPanel();
 	private JPanel right =new JPanel();
 	private DefaultMutableTreeNode treeRoot;
