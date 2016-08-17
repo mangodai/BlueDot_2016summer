@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 
 import edu.JTree.JTreeDemo;
 import edu.Jar.UnJar;
+import edu.formula.FormulaDemo;
 
 
 
@@ -125,8 +126,11 @@ public CutPanel(String title) {  //构造函数重写
 			else if(buttonName.equals("二叉树")){
 				cp.panel.add(new BTree(),BorderLayout.CENTER);
 			}
-			else if(buttonName.equals("离散lab6")||buttonName.equals("离散lab5")){
+			else if(buttonName.equals("离散lab6")){
 				cp.panel.add(new SetLab(),BorderLayout.CENTER);
+			}
+			else if(buttonName.equals("离散lab5")){
+				cp.panel.add(new FormulaDemo(),BorderLayout.CENTER);
 			}
 			else if(buttonName.equals("最短路径")){
 				cp.panel.add(new DistanceDemo(),BorderLayout.CENTER);				
