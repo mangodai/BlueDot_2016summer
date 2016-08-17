@@ -58,14 +58,16 @@ public class UnJar {
         File src = new File(jarPath);
         String desFile = "Src";
         File desDir = new File(src.getParent()+File.separator+desFile);
-        try {
-            unJarByJarFile(src, desDir);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if(!desDir.exists()){
+	        try {
+	            unJarByJarFile(src, desDir);
+	        } catch (FileNotFoundException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
         }
     }
 }
