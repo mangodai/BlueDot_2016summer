@@ -47,8 +47,6 @@ public class DistanceTest {
         step6.put(1, 14);  
         step6.put(5, 9);  
         step6.put(3, 2);  
-        str.append("最短路径中节点为：");
-		str.append(stepLength.keySet().toString()+LINE);
         System.out.println(stepLength.keySet().toString());
 	}
 	/**
@@ -83,6 +81,8 @@ public class DistanceTest {
 	}
 
 	public StringBuilder getStr() {
+        str.append("最短路径中节点为：");
+		str.append(stepLength.keySet().toString()+LINE);
 		return str;
 	}
 
