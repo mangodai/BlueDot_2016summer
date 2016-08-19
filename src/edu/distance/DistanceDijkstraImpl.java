@@ -20,15 +20,7 @@ public class DistanceDijkstraImpl implements Distance {
     //起点、终点  
     private int startNode;  
     private int endNode;  
-      
-    /** 
-     * @param start 
-     * @param end 
-     * @param stepLength 
-     * @return 
-     * @Author:lulei   
-     * @Description: start 到 end 的最短距离 
-     */  
+
     public MinStep getMinStep(int start, int end, final HashMap<Integer, HashMap<Integer, Integer>> stepLength) {  
         this.stepLength = stepLength;  
         this.nodeNum = this.stepLength != null ? this.stepLength.size() : 0;  
@@ -63,11 +55,6 @@ public class DistanceDijkstraImpl implements Distance {
         return minStep;  
     }  
       
-    /** 
-     * @param start 
-     * @Author:lulei   
-     * @Description: 初始化属性 
-     */  
     private void initProperty(int start, int end) {  
         outNode = new HashSet<Integer>();  
         nodeStep = new HashMap<Integer, PreNode>();  
@@ -75,13 +62,7 @@ public class DistanceDijkstraImpl implements Distance {
         nextNode.add(start);  
         startNode = start;  
         endNode = end;  
-    }  
-      
-    /** 
-     * @param end 
-     * @Author:lulei   
-     * @Description: 
-     */  
+    }   
     private void step() {  
         if (nextNode == null || nextNode.size() < 1) {  
             return;  

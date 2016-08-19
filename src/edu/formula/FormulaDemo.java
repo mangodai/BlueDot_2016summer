@@ -10,6 +10,7 @@ import java.util.Stack;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -34,8 +35,12 @@ public class FormulaDemo extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int numbers = list.size();
-			numbers++;
-			thansform(numbers);
+			if(numbers<5){
+					numbers++;
+					thansform(numbers);
+			}else{
+				JOptionPane.showMessageDialog(null, "命题变量个数："+numbers+",不可以再多了,爆屏了");
+			}
 		}	
 	};	
 	ActionListener reduse = new ActionListener(){
@@ -43,8 +48,12 @@ public class FormulaDemo extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int numbers = list.size();
-			numbers--;
-			thansform(numbers);
+			if(numbers>2){
+					numbers--;
+					thansform(numbers);
+			}else{
+				JOptionPane.showMessageDialog(null, "命题变量个数："+numbers+",不可以再少了");
+			}
 		}	
 	};
 	private void thansform(int numbers) {
@@ -52,6 +61,7 @@ public class FormulaDemo extends JPanel{
 //		jt.remove(center);
 		this.add(initi(numbers), BorderLayout.CENTER);
 		this.center.updateUI();
+//		this.center.disable();
 	}
 	private JPanel ButtonIniti() {
 		JPanel head = new JPanel();
@@ -83,6 +93,7 @@ public class FormulaDemo extends JPanel{
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);// 自动调整尺寸模式
 		tableModel.addRow(tableHead());
 		addRow();
+		table.disable();
 		return table;
 	}
 
@@ -346,6 +357,15 @@ public class FormulaDemo extends JPanel{
 						.toString());
 				if(k!=list.size()-1){
 					stb.append(c[j]);					
+				}else {
+					if(j==0){
+						stb.append(" 析取");
+					}else if(j==1){
+						stb.append(" 合取");
+					}else if(j==2){
+						stb.append(" 蕴含");
+					}else{
+					}
 				}
 			}
 			s[i]=stb.toString();

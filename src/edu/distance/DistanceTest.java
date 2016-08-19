@@ -65,8 +65,8 @@ public class DistanceTest {
         	MinStep step = distance.getMinStep(start, end, stepLength);  //数据输入处理是否包含该节点
         	str.append("所需最短距离:"+step.getMinStep()+LINE);
         	str.append("所走过最短节点:"+step.getStep().toString()+LINE);
-        	System.out.println("getMinDistance:"+step.getMinStep());
-        	System.out.println("getStep:"+step.getStep().toString());
+//        	System.out.println("getMinDistance:"+step.getMinStep());
+//        	System.out.println("getStep:"+step.getStep().toString());
         }
         
         return getStr().toString();
@@ -81,8 +81,8 @@ public class DistanceTest {
 	}
 
 	public StringBuilder getStr() {
-        str.append("最短路径中节点为：");
-		str.append(stepLength.keySet().toString()+LINE);
+        str.append("最短路径中 选择节点为：");
+//		str.append(stepLength.keySet().toString()+LINE);
 		return str;
 	}
 
@@ -103,6 +103,7 @@ public class DistanceTest {
 				v.append("    "+me.getKey()+"    距离为"+me.getValue()+LINE);
 			}
 		}
+		v.append(stepLength.keySet().toString()+LINE);
 		return v.toString();
 	}
 	

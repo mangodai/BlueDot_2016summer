@@ -3,6 +3,7 @@ package BlueDot;
 import javax.swing.JOptionPane;
 
 public class SortDemo {
+    private int i=1;
 	private String funData="";
 	public String sorting(String name,int oldData[]){
 		int[] data = dataCopy(oldData);//防止原来数据被修改
@@ -109,10 +110,10 @@ public class SortDemo {
 		}
 		return funData;
 	}
-
+	
 	private String quickSort(int n[], int left, int right) {
         int dp;
-        int i=1;
+
         if (left < right) {
             dp = partition(n, left, right);
             quickSort(n, left, dp - 1);;

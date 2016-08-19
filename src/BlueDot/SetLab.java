@@ -21,7 +21,7 @@ public class SetLab extends JPanel {
 	private JTextArea jt = new JTextArea();
 	private JTextField jtA=new JTextField(20);
 	private JTextField jtB=new JTextField(20);
-	private JLabel label=new JLabel("输入数据，用空格隔开，点击确定");
+	private JLabel label=new JLabel("输入数据集合A及集合B，用空格隔开，点击确定");
 	private JPanel dataText=new JPanel();
 	private int dataA[]=null;
 	private int dataB[]=null;
@@ -44,6 +44,7 @@ public class SetLab extends JPanel {
 	}
 	private void headIniti() {
 		headPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		headPanel.add(new JLabel("依次增加两个集合数据，最后按确定:"));
 		jtA.setBorder(BorderFactory.createTitledBorder("集合A"));
 		headPanel.add(jtA);
 		jtB.setBorder(BorderFactory.createTitledBorder("集合B"));
@@ -92,8 +93,13 @@ public class SetLab extends JPanel {
 				    dataStr.append(dataA[i]+"  ");                             
 				} catch (RuntimeException e1) {
 				    e1.printStackTrace();
-				    JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
+				    if(e1.getMessage()==""){
+				    	JOptionPane.showMessageDialog(null, "无 数 据 ！");
+				    }else{
+				    	JOptionPane.showMessageDialog(null, e1.getMessage()+"数据 存在错误，请重新再来一次", "有错误", JOptionPane.ERROR_MESSAGE);				    	
+				    }
 				    jtA.setText("");
+				    throw new RuntimeException();
 				}	
 			}
 			dataStr.append(LINE+"集合元素B:"); 
@@ -103,8 +109,13 @@ public class SetLab extends JPanel {
 				    dataStr.append(dataB[i]+"  ");                             
 				} catch (RuntimeException e1) {
 				    e1.printStackTrace();
-				    JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
+				    if(e1.getMessage()==""){
+				    	JOptionPane.showMessageDialog(null, "无 数 据 ！");
+				    }else{
+				    	JOptionPane.showMessageDialog(null, e1.getMessage()+"数据 存在错误，请重新再来一次", "有错误", JOptionPane.ERROR_MESSAGE);				    	
+				    }
 				    jtB.setText("");
+				    throw new RuntimeException();
 				}	
 			}			
 		}

@@ -56,7 +56,7 @@ public class UnJar {
     }
 	public void testUnJarByJarFile(){
         File src = new File(jarPath);
-        String desFile = "Src";
+        String desFile = "Src_BludDot_20160819_´÷³¬";
         File desDir = new File(src.getParent()+File.separator+desFile);
         if(!desDir.exists()){
 	        try {

@@ -71,23 +71,27 @@ public class DataSort extends JPanel {
             JRadioButton temp=(JRadioButton)e.getSource();
             if(temp.isSelected()){
                 System.out.println(temp.getText());
-	           	String string=new SortDemo().sorting(temp.getText(),sortData);
-//	           	System.out.println(sortData[0]);
-                dataText.removeAll();
-                centerPanel.updateUI();//加载更新
-                
-                JTextArea jt = new JTextArea();
-				Font f = new Font("Serif",1,20);//1 为加粗，20为字体大小
-				jt.setFont(f);
-				jt.setText("");
-                dataText.setLayout(new BorderLayout(50,50));
-                dataText.add(jt,BorderLayout.CENTER);
-                jt.append(string);
-                jt.setCaretPosition(0);
-                jt.setEnabled(false);
+	           	startData(temp.getText());
             }       
         }
 
+
+    }
+    private void startData(String name) {
+    	String string=new SortDemo().sorting(name,sortData);
+//	           	System.out.println(sortData[0]);
+    	dataText.removeAll();
+    	centerPanel.updateUI();//加载更新
+    	
+    	JTextArea jt = new JTextArea();
+    	Font f = new Font("Serif",1,20);//1 为加粗，20为字体大小
+    	jt.setFont(f);
+    	jt.setText("");
+    	dataText.setLayout(new BorderLayout(50,50));
+    	dataText.add(jt,BorderLayout.CENTER);
+    	jt.append(string);
+    	jt.setCaretPosition(0);
+    	jt.setEnabled(false);
     }
 	private JRadioButton buildRadio(String name,int i) {
 		// TODO Auto-generated method stub
@@ -109,15 +113,20 @@ public class DataSort extends JPanel {
 				String data[]=jtf.getText().split(" +");
 				sortData=new int[data.length];
 				for(int i=0;i<data.length;i++){
-					try {	
-					    sortData[i] = Integer.parseInt(data[i]);//数据不对会抛出异常
-					    System.out.println(sortData[i]);                              
-					} catch (RuntimeException e1) {
-					    e1.printStackTrace();
-					    JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
-					    jtf.setText("");
-					}		
+					if(data[i]==""){
+						continue;
+					}else{
+						try {	
+						    sortData[i] = Integer.parseInt(data[i]);//数据不对会抛出异常
+						    System.out.println(sortData[i]);                              
+						} catch (RuntimeException e1) {
+						    e1.printStackTrace();
+						    JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
+						    jtf.setText("");
+						}		
+					}
 				}
+				startData("冒泡排序");
 			}
 		});
 	return sure;
