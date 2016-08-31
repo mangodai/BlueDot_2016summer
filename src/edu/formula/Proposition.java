@@ -1,4 +1,4 @@
-﻿package edu.formula;
+﻿package edu.Formula;
 
 public class Proposition{
 	private boolean value;
