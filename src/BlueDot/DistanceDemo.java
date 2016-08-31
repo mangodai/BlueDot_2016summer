@@ -61,7 +61,7 @@ public class DistanceDemo extends JPanel{
 //		jtf.addMouseListener(l);
 		head.setLayout(new FlowLayout());
 		jb.addActionListener(l);
-		head.add(new JLabel("输入数据："));
+		head.add(new JLabel("该算法为双向边哦,输入数据："));
 		head.add(jtf);
 		head.add(jb);
 		return head;
@@ -159,9 +159,10 @@ public class DistanceDemo extends JPanel{
 		right.add(jsp,BorderLayout.CENTER);
 		Font f = new Font("Serif",1,15);
 		jt.setFont(f);
+		jt.setText("");
 		jt.append(path.getV());
 		jt.append(path.getStr().toString());
-//		jt.disable();
+		jt.setEditable(false);
 		return right;
 	}
 	private ActionListener a1 = new ActionListener(){
@@ -172,7 +173,6 @@ public class DistanceDemo extends JPanel{
 			System.out.println(jb.getText());
 			upSelect = Integer.valueOf(jb.getText());
 		}
-		
 	};
 	private ActionListener a2 = new ActionListener(){
 		// down 的监听

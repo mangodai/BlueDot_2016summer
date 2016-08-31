@@ -40,7 +40,7 @@ public class FormulaDemo extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int numbers = list.size();
-			if (numbers < 5) {
+			if (numbers < 7) {
 				numbers++;
 				thansform(numbers);
 			} else {

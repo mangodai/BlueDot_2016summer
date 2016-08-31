@@ -36,7 +36,7 @@ public class Main extends JFrame {
 
 	public Main(String title) { // 构造函数重写
 		this.setTitle(title);
-		this.setSize(803, 768);
+		this.setSize(803, 668);
 		// this.setResizable(false);
 		this.setLocationRelativeTo(null); // 设置窗体在屏幕中央显示
 		this.getContentPane().add(buildToolBar("功能区"), BorderLayout.NORTH); // 增加工具菜单

@@ -54,6 +54,12 @@ public class DistanceTest {
 	 */
 	public String getDemo(int start ,int end) {
 		Distance distance = new DistanceDijkstraImpl();
+		
+		if(str!=null){//消亡原来选择的节点
+			str= new StringBuilder();
+//			str.append(LINE);
+		}
+		
         if((!stepLength.containsKey(start))||(!stepLength.containsKey(end))){
         	str.append("不包含这几个点");
         }
@@ -63,8 +69,13 @@ public class DistanceTest {
         else{
         	str.append("你选择的起点："+start+"----终点:"+end+LINE);
         	MinStep step = distance.getMinStep(start, end, stepLength);  //数据输入处理是否包含该节点
-        	str.append("所需最短距离:"+step.getMinStep()+LINE);
-        	str.append("所走过最短节点:"+step.getStep().toString()+LINE);
+        	if(step.getMinStep()!=-1){
+        		str.append("所需最短距离:"+step.getMinStep()+LINE);
+        		str.append("所走过最短节点:"+step.getStep().toString()+LINE);        		
+        	}
+        	else{
+        		str.append("走个鬼啊，走不了"+LINE);
+        	}
 //        	System.out.println("getMinDistance:"+step.getMinStep());
 //        	System.out.println("getStep:"+step.getStep().toString());
         }
@@ -81,7 +92,7 @@ public class DistanceTest {
 	}
 
 	public StringBuilder getStr() {
-        str.append("最短路径中 选择节点为：");
+//        str.append("最短路径中 选择节点为：");
 //		str.append(stepLength.keySet().toString()+LINE);
 		return str;
 	}
