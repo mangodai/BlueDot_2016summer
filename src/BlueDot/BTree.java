@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import edu.JTextField.myTextField;
+
 
 public class BTree extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +24,9 @@ public class BTree extends JPanel {
 	private JPanel centerPanel=new JPanel();
 	
 	private JTextArea jt = new JTextArea();
-	private JTextField jtf=new JTextField(20);
+	
+//	private JTextField jtf=new JTextField(20);
+	private myTextField jtf=new myTextField(20);
 	private JLabel label=new JLabel("输入数据，用空格隔开，点击确定");
 	private JPanel dataText=new JPanel();
 	private int newData[]=null;
@@ -71,7 +75,10 @@ public class BTree extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String data[]=jtf.getText().split(" +");
+				if(jtf.getText().equals("")){
+					return ;
+				}
+				String data[]=jtf.getText().trim().split(" +");
 				newData=new int[data.length];
 				jt.setText("");
 				StringBuffer dataStr=new StringBuffer("数据元素：");

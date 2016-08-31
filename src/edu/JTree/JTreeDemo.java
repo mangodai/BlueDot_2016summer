@@ -55,7 +55,7 @@ public class JTreeDemo extends JPanel{
 		left.add(jsp,BorderLayout.CENTER);
 		this.add(left);
 	}
-	/**
+	/**x
 	 * 为树增加鼠标监听
 	 * @param tree
 	 */
@@ -115,6 +115,7 @@ public class JTreeDemo extends JPanel{
 			readDict(path,dict);
 		}
 	}
+	
 	private void readDict(File path, DefaultMutableTreeNode dict) {
 		MyFilter filter = new MyFilter(".java");
 		File list[] = path.listFiles(filter);

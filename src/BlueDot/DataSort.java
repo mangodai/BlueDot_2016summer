@@ -14,16 +14,24 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
+import edu.JTextField.myTextField;
+/**
+ * DataSort.java
+ * @author Deri Aug 26, 201612:06:12 PM
+ *对数据排序
+ */
 public class DataSort extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel headPanel=new JPanel();
 	private JPanel centerPanel=new JPanel();
-	private JTextField jtf=new JTextField(20);
+//	private JTextField jtf=new JTextField();
+	private myTextField jtf=new myTextField();
+	/**
+	 * 2016年8月22日 22:45:18
+	 * 创建一个数据输入类
+	 */
+//	private JFormattedTextField jtf = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JRadioButton jr[]=new JRadioButton[4];
 	private JLabel label=new JLabel("输入数据，用空格隔开，点击确定，选择算法");
 	public static String name[]={"快速排序","冒泡排序","桶排序","希尔排序"};
@@ -56,6 +64,8 @@ public class DataSort extends JPanel {
 	}
 	private void headIniti(){
 		headPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		jtf.setColumns(20);
+//		jtfKeyListener();//已经抽象
 		headPanel.add(jtf);
 		String text=jtf.getText();
 		System.out.println(text);
@@ -63,8 +73,11 @@ public class DataSort extends JPanel {
 		for(int i = 0;i<name.length;i++){
 			headPanel.add(buildRadio(name[i],i));
 		}
+//		group.setSelected(m, b);
 	}
-    public class RadioButtonListener implements ActionListener
+
+	
+	public class RadioButtonListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -98,10 +111,13 @@ public class DataSort extends JPanel {
 
 		if(jr[i]==null){
 			jr[i]=new JRadioButton(name);
+			jr[i].setName(name);
 			jr[i].addActionListener(radioButtonListener);
 			group.add(jr[i]);
 		}
-//		jr[0].setSelected(true);//默认选择,后续开发
+		if(name.equals("冒泡排序")){
+			jr[i].setSelected(true);//默认选择,后续开发`			
+		}
 	return jr[i];
 	}
 	private JButton buildSure(){
@@ -109,11 +125,14 @@ public class DataSort extends JPanel {
 		sure.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String data[]=jtf.getText().split(" +");
+				String temp = jtf.getText().trim();
+				if(temp.equals("")){
+					return ;
+				}
+				String data[]=temp.split(" +");
 				sortData=new int[data.length];
 				for(int i=0;i<data.length;i++){
-					if(data[i]==""){
+					if(data[i]==null){
 						continue;
 					}else{
 						try {	
@@ -121,12 +140,30 @@ public class DataSort extends JPanel {
 						    System.out.println(sortData[i]);                              
 						} catch (RuntimeException e1) {
 						    e1.printStackTrace();
-						    JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
+						    if(e1.getMessage()==""){
+						    	JOptionPane.showMessageDialog(null, "开头多了一个空格,无 数 据 ！");
+						    }else{
+						    	JOptionPane.showMessageDialog(null, e1.getMessage()+"待排序数据有错误", "有错误", JOptionPane.ERROR_MESSAGE);
+						    }
 						    jtf.setText("");
+						    throw new RuntimeException();
 						}		
 					}
 				}
-				startData("冒泡排序");
+				String s = getSelectJRadio();
+				System.out.println(s);
+				startData(s);
+			}
+
+			private String getSelectJRadio() {
+				String s=null;
+				for(JRadioButton i:jr){
+					if(i.isSelected()){
+						s=i.getName();
+						//to do setname
+					}
+				}
+				return s;
 			}
 		});
 	return sure;
