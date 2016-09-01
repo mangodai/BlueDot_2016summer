@@ -20,6 +20,7 @@ import javax.swing.tree.TreePath;
 import edu.File.MyFile;
 import edu.FileFilter.MyFilter;
 import edu.JTextArea.MyTextArea;
+import edu.Jar.UnJar;
 
 public class JTreeDemo extends JPanel{
 
@@ -27,7 +28,9 @@ public class JTreeDemo extends JPanel{
 //	private JLabel test = new JLabel("正在开发");
 	private MyTextArea jt = new MyTextArea("请选择"); 
 //	private final String filePath ="D:\\WorkSpace\\BlueDot_2016summer\\src";
-	private final String filePath =System.getProperty("user.dir")+File.separator+"Src_BludDot_戴超";
+//	private final String filePath =System.getProperty("user.dir")+File.separator+"Src_BludDot_戴超";
+	private String JarPath = null;
+	private String filePath = null;
 	private JPanel left =new JPanel();
 	private JPanel right =new JPanel();
 	private DefaultMutableTreeNode treeRoot;
@@ -108,6 +111,10 @@ public class JTreeDemo extends JPanel{
 		
 	}
 	private void addFile() {
+		if(filePath==null){
+			JarPath = UnJar.desFile;
+			filePath = System.getProperty("user.dir")+File.separator+JarPath ;
+		}
 		File path = new File (filePath);
 		if(path.exists()){
 			DefaultMutableTreeNode dict = new DefaultMutableTreeNode(new MyFile(path));

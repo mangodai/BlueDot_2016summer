@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class UnJar {
 	private static final String jarPath = System.getProperty("java.class.path");
-
+	public static final String desFile = "Src_BludDot_´÷³¬";
 	public UnJar() {
 		super();
 		this.testUnJarByJarFile();
@@ -67,7 +67,6 @@ public class UnJar {
 
 	public void testUnJarByJarFile() {
 		File src = new File(jarPath);
-		String desFile = "Src_BludDot_´÷³¬";
 		File desDir = new File(src.getParent() + File.separator + desFile);
 		if (desDir.exists()) {
 			System.out.println("É¾³ý½á¹û£º	" + desDir.delete());
