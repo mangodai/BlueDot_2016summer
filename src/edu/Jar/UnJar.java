@@ -76,6 +76,8 @@ public class UnJar {
 		}
 		try {
 			unJarByJarFile(src, desDir);
+			JOptionPane.showMessageDialog(null, "创建成功", "创建成功",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

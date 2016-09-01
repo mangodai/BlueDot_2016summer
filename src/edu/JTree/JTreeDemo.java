@@ -118,6 +118,7 @@ public class JTreeDemo extends JPanel{
 	
 	private void readDict(File path, DefaultMutableTreeNode dict) {
 		MyFilter filter = new MyFilter(".java");
+//		MyFilter filter = new MyFilter(".class");
 		File list[] = path.listFiles(filter);
 		if (list == null)
 			return;
